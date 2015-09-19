@@ -975,7 +975,7 @@ MonoBehaviour:
   m_pointCloud: {fileID: 2044887022}
   tangoButton: {fileID: 986324968}
   marcoButton: {fileID: 1617140833}
-  _marcoSound: {fileID: 0}
+  marcoSound: {fileID: 0}
 --- !u!82 &2027677328
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1020,7 +1020,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

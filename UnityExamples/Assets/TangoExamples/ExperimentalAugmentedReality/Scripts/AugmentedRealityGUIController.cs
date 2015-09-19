@@ -62,6 +62,8 @@ public class AugmentedRealityGUIController : MonoBehaviour
     public const string UX_STATUS = "\tstatus: {0}, count: {1}, position (m): [{2}], orientation: [{3}]";
     public const float SECOND_TO_MILLISECOND = 1000.0f;
 
+    private AudioSource tangoAudio;
+
     /// <summary>
     /// How big (in pixels) is a tap.
     /// </summary>
@@ -127,7 +129,7 @@ public class AugmentedRealityGUIController : MonoBehaviour
 
     private GameObject SetMarker;
 
-    public AudioSource _marcoSound;
+    public AudioSource marcoSound;
 
     /// <summary>
     /// Unity Start() callback, we set up some initial values here.
@@ -416,7 +418,7 @@ public class AugmentedRealityGUIController : MonoBehaviour
                 _mainAudio.clip = MarcoAudio;
                 _mainAudio.Play();
 
-                Invoke("PlayTango", 1f);
+                // Invoke("PlayTango", 1f);
 
             }   
 
@@ -427,7 +429,10 @@ public class AugmentedRealityGUIController : MonoBehaviour
                 
                 _mainAudio.clip = MarcoAudio;
                 _mainAudio.Play();
-
+                if (tangoAudio != null)
+                {
+                    tangoAudio.Play();
+                }
             }
             else
             {
@@ -453,7 +458,7 @@ public class AugmentedRealityGUIController : MonoBehaviour
                     m_selectedMarker = tapped.GetComponent<ARLocationMarker>();
                 }
             }
-            else
+            else if(tangoAudio == null)
             {
                 // Place a new point at that location, clear selection
                 Vector3 planeCenter;
@@ -479,7 +484,7 @@ public class AugmentedRealityGUIController : MonoBehaviour
                     // floating point error in it.
                     forward = Vector3.Cross(up, cam.transform.right);
                 }
-                Instantiate(m_prefabLocation, planeCenter, Quaternion.LookRotation(forward, up));
+                tangoAudio = (Instantiate(m_prefabLocation, planeCenter, Quaternion.LookRotation(forward, up)) as GameObject).GetComponent<AudioSource>();
                 m_selectedMarker = null;
             }
         }
@@ -502,14 +507,5 @@ public class AugmentedRealityGUIController : MonoBehaviour
         {
             return;
         }
-    }
-
-    void PlayTango()
-    {
-        //SetMarker.gameObject.GetComponent<AudioSource>().clip = TangoAudio;
-        //SetMarker.gameObject.GetComponent<AudioSource>().Play();
-
-        m_prefabLocation.gameObject.GetComponent<AudioSource>().clip = TangoAudio;
-        m_prefabLocation.gameObject.GetComponent<AudioSource>().Play();
     }
 }
