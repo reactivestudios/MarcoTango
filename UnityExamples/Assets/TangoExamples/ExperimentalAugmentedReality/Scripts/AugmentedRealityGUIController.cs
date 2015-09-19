@@ -125,6 +125,8 @@ public class AugmentedRealityGUIController : MonoBehaviour
 
     public Button marcoButton;
 
+    private GameObject SetMarker;
+
     /// <summary>
     /// Unity Start() callback, we set up some initial values here.
     /// </summary>
@@ -409,25 +411,36 @@ public class AugmentedRealityGUIController : MonoBehaviour
 
             if (_tangoSet)
             {
-                _mainAudio.clip = TangoAudio;
+                //_mainAudio.clip = TangoAudio;
+                //_mainAudio.Play();
+                
+                _mainAudio.clip = MarcoAudio;
                 _mainAudio.Play();
 
-                
             }
             else
             {
                 _tangoSet = true;
+                SetMarker = m_prefabLocation;
+
+                //tangoButton.gameObject.SetActive(true);
+                //marcoButton.gameObject.SetActive(true);
+            }
+
+            if (_tangoSet == true)
+            {
                 _mainAudio.clip = MarcoAudio;
                 _mainAudio.Play();
 
-                tangoButton.gameObject.SetActive(true);
-                marcoButton.gameObject.SetActive(true);
+                Invoke("PlayTango", 1f);
 
-            }
-
-            _position = Input.GetTouch(0).position;
-
-            //AudioSource.PlayClipAtPoint(MarcoAudio, _position);
+                //if (SetMarker != null && m_prefabLocation.gameObject.transform.position == SetMarker.gameObject.transform.position)
+                //{
+                //    m_prefabLocation.gameObject.GetComponent<AudioSource>().clip = TangoAudio;
+                //    m_prefabLocation.gameObject.GetComponent<AudioSource>().Play();
+                //}
+               
+            }     
 
             if (m_selectedRect.Contains(guiPosition) || m_hideAllRect.Contains(guiPosition))
             {
@@ -491,5 +504,14 @@ public class AugmentedRealityGUIController : MonoBehaviour
         {
             return;
         }
+    }
+
+    void PlayTango()
+    {
+        //SetMarker.gameObject.GetComponent<AudioSource>().clip = TangoAudio;
+        //SetMarker.gameObject.GetComponent<AudioSource>().Play();
+
+        _mainAudio.clip = TangoAudio;
+        _mainAudio.Play();
     }
 }
