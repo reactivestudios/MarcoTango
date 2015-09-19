@@ -26,11 +26,7 @@ using UnityEngine.UI;
 /// <summary>
 /// GUI controller controls all the debug overlay to show the data for poses.
 /// </summary>
-public class AugmentedRealityGUIController : MonoBehaviour
-{
-    public AudioClip TangoAudio;
-
-    public AudioClip MarcoAudio;
+public class AugmentedRealityGUIController : MonoBehaviour {
 
     // Constant value for controlling the position and size of debug overlay.
     public const float UI_LABEL_START_X = 15.0f;
@@ -120,8 +116,6 @@ public class AugmentedRealityGUIController : MonoBehaviour
     private AudioSource _mainAudio;
 
     private Vector3 _position;
-
-    private bool _tangoSet = false;
 
     public Button tangoButton;
 
@@ -413,35 +407,20 @@ public class AugmentedRealityGUIController : MonoBehaviour
                 return;
             }
 
-            if (_tangoSet == true)
+            if (tangoAudio != null)
             {
-                _mainAudio.clip = MarcoAudio;
                 _mainAudio.Play();
-
-                // Invoke("PlayTango", 1f);
-
-            }   
-
-            if (_tangoSet)
-            {
-                //_mainAudio.clip = TangoAudio;
-                //_mainAudio.Play();
-                
-                _mainAudio.clip = MarcoAudio;
-                _mainAudio.Play();
-                if (tangoAudio != null)
-                {
-                    tangoAudio.Play();
-                }
+                tangoAudio.Play();
             }
+
+                /*
             else
             {
-                _tangoSet = true;
                 SetMarker = m_prefabLocation;
 
                 //tangoButton.gameObject.SetActive(true);
                 marcoButton.gameObject.SetActive(true);
-            }
+            }*/
 
               
 

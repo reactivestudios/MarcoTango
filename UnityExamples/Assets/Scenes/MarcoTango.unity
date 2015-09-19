@@ -968,8 +968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78760276f84c94c678297fc65f4ec855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TangoAudio: {fileID: 8300000, guid: f694f06eaf09bab4383910a3792173d8, type: 3}
-  MarcoAudio: {fileID: 8300000, guid: 934ef0e4d3cfb6946b4141d3fe164039, type: 3}
   m_arScreen: {fileID: 1065599730}
   m_prefabLocation: {fileID: 188320, guid: eca66899b90504167b643aadeaadf7e2, type: 2}
   m_pointCloud: {fileID: 2044887022}
